@@ -1,0 +1,2 @@
+# Our sample data will be loaded into our MongoDB Atlas Cluster and not a local server
+data
