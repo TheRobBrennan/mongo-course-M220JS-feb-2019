@@ -49,3 +49,9 @@ $ npm run docker:refresh                // Refresh your environment
 One cool thing about having this application Dockerized is that any changes you make will be instantly reloaded.
 
 Your application should be available at [http://localhost:5000](http://localhost:5000).
+
+## Ticket: Projection
+Modify `getMoviesByCountry` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js/test/projection.test.js` passes. Verify by running:
+```
+$ npm test -t projection
+```
