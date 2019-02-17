@@ -7,6 +7,7 @@
     "start": "nodemon -L ./index.js",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --passWithNoTests --watch",
+    "example:test": "npm test -t <lesson-name>",
     "changestream:update": "node test/lessons/change-updates.js",
     "changestream:insert": "node test/lessons/change-insert.js"
   },
