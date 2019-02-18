@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  'm220js-react-app':
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: 'M220JS-react-app'
+    command: npm start
+    volumes:
+      - ./:/usr/src
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: "M220JS-mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    # If you want to persist MongoDB data after a container has been stopped/deleted, uncomment the volumes section
+    volumes:
+      - ./data/mflix:/mflix
+    ports:
+      - "27017:27017"
