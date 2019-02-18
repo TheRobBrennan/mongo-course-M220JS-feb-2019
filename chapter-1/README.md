@@ -55,3 +55,10 @@ Modify `getMoviesByCountry` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js
 ```
 $ npm test -t projection
 ```
+
+## Ticket: Text and Subfield Search
+Modify `genreSearchQuery` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js/test/text-subfield.test.js` passes. Verify by running:
+```
+$ npm test -t text-subfield
+```
+
