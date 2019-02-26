@@ -43,3 +43,9 @@ Modify `addComment` and `updateComment` in `mflix-js/src/dao/commentsDAO.js` so 
 ```
 $ npm test -t create-update-comments
 ```
+
+## Ticket: Delete Comments
+Modify `deleteComment` in `mflix-js/src/dao/commentsDAO.js` so that `mflix-js/test/delete-comments.test.js` passes. Verify by running:
+```
+$ npm test -t delete-comments
+```
