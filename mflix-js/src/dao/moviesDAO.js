@@ -194,12 +194,16 @@ export default class MoviesDAO {
     to complete this task, but you might have to do something about `const`.
     */
 
-    const queryPipeline = [
+    let queryPipeline = [
       matchStage,
       sortStage,
       // TODO Ticket: Faceted Search
       // Add the stages to queryPipeline in the correct order.
     ]
+    // Clearly we could have just added these to the original const queryPipeline.
+    queryPipeline.push(skipStage)
+    queryPipeline.push(limitStage)
+    queryPipeline.push(facetStage)
 
     try {
       const results = await (await movies.aggregate(queryPipeline)).next()
@@ -261,8 +265,9 @@ export default class MoviesDAO {
     */
 
     // TODO Ticket: Paging
+    const MOVIES_TO_SKIP = page * moviesPerPage // Skip over movies from previous pages
     // Use the cursor to only return the movies that belong on the current page
-    const displayCursor = cursor.limit(moviesPerPage)
+    const displayCursor = cursor.skip(MOVIES_TO_SKIP).limit(moviesPerPage)
 
     try {
       const moviesList = await displayCursor.toArray()
@@ -295,11 +300,49 @@ export default class MoviesDAO {
       */
 
       // TODO Ticket: Get Comments
+      /*
+        See https://docs.mongodb.com/manual/reference/operator/aggregation/lookup/#join-conditions-and-uncorrelated-sub-queries:
+
+          {
+            $lookup:
+              {
+                from: <collection to join>,
+                let: { <var_1>: <expression>, …, <var_n>: <expression> },
+                pipeline: [ <pipeline to execute on the collection to join> ],
+                as: <output array field>
+              }
+          }
+
+      */
       // Implement the required pipeline.
       const pipeline = [
         {
+          // Find the _id from our movies collection
           $match: {
             _id: ObjectId(id),
+          },
+        },
+        {
+          $lookup: {
+            from: "comments", // We want to find all comments that have the same ID as our movie
+            let: { id: "$_id" }, // Create a local variable "id" which is set to our original "_id" variable in our $match stage
+            pipeline: [
+              {
+                // Find all documents in the comments collection where the movie_id matches our local variable "id"
+                $match: {
+                  $expr: {
+                    $eq: ["$movie_id", "$$id"],
+                  },
+                },
+              },
+              {
+                // Sort the comments so that the most recent ones are first (descending order)
+                $sort: {
+                  date: -1,
+                },
+              },
+            ],
+            as: "comments",
           },
         },
       ]
