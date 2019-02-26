@@ -16,3 +16,9 @@ Modify `facetedSearch` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js/test
 ```
 $ npm test -t facets
 ```
+
+## Ticket: User Management
+Modify `getUser`, `addUser`, `loginUser`, `logoutUser`, and `getUserSession` in `mflix-js/src/dao/usersDAO.js` so that `mflix-js/test/user-management.test.js` passes. Verify by running:
+```
+$ npm test -t user-management
+```
