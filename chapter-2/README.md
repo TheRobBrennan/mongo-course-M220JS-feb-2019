@@ -6,3 +6,13 @@ Modify `getMovies` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js/test/pag
 ```
 $ npm test -t paging
 ```
+
+## Ticket: Faceted Search
+What is [faceted search](https://en.wikipedia.org/wiki/Faceted_search)?
+
+By default, faceted searches are not enabled. To enable faceted search in the UI, open the `mflix-js/build/index.html` file and set `useFacets: true` in the mflix object.
+
+Modify `facetedSearch` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js/test/facets.test.js` passes. Verify by running:
+```
+$ npm test -t facets
+```
