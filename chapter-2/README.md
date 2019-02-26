@@ -25,3 +25,9 @@ $ npm test -t user-management
 
 ## Ticket: Durable Writes
 Modify `addUser` in `mflix-js/src/dao/usersDAO.js` to have durable writes - there are no tests for this ticket.
+
+## Ticket: User Preferences
+Modify `updatePreferences` in `mflix-js/src/dao/usersDAO.js` so that `mflix-js/test/user-preferences.test.js` passes. Verify by running:
+```
+$ npm test -t user-preferences
+```
