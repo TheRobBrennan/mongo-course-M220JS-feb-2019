@@ -6,3 +6,16 @@ Modify `mostActiveCommenters` in `mflix-js/src/dao/commentsDAO.js` so that `mfli
 ```
 $ npm test -t user-report
 ```
+
+## Ticket: Migration
+Modify `mflix-js/src/migrations/movie-last-updated-migration.js` so that `mflix-js/test/migration.test.js` passes. 
+
+Run the migration from the `mflix-js` directory:
+```
+$ node src/migrations/movie-last-updated-migration.js
+```
+
+Verify by running:
+```
+$ npm test -t migration
+```
