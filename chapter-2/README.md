@@ -37,3 +37,9 @@ Modify `getMovieByID` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js/test/
 ```
 $ npm test -t get-comments
 ```
+
+## Ticket: Create/Update Comments
+Modify `addComment` and `updateComment` in `mflix-js/src/dao/commentsDAO.js` so that `mflix-js/test/create-update-comments.test.js` passes. Verify by running:
+```
+$ npm test -t create-update-comments
+```
