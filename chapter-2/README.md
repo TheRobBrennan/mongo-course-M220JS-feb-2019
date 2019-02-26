@@ -22,3 +22,6 @@ Modify `getUser`, `addUser`, `loginUser`, `logoutUser`, and `getUserSession` in 
 ```
 $ npm test -t user-management
 ```
+
+## Ticket: Durable Writes
+Modify `addUser` in `mflix-js/src/dao/usersDAO.js` to have durable writes - there are no tests for this ticket.
