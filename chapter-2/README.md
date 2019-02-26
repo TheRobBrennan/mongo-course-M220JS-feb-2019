@@ -31,3 +31,9 @@ Modify `updatePreferences` in `mflix-js/src/dao/usersDAO.js` so that `mflix-js/t
 ```
 $ npm test -t user-preferences
 ```
+
+## Ticket: Get Comments
+Modify `getMovieByID` in `mflix-js/src/dao/moviesDAO.js` so that `mflix-js/test/get-comments.test.js` passes. Verify by running:
+```
+$ npm test -t get-comments
+```

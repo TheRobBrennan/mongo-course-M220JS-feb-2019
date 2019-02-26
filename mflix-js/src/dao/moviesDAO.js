@@ -300,11 +300,49 @@ export default class MoviesDAO {
       */
 
       // TODO Ticket: Get Comments
+      /*
+        See https://docs.mongodb.com/manual/reference/operator/aggregation/lookup/#join-conditions-and-uncorrelated-sub-queries:
+
+          {
+            $lookup:
+              {
+                from: <collection to join>,
+                let: { <var_1>: <expression>, …, <var_n>: <expression> },
+                pipeline: [ <pipeline to execute on the collection to join> ],
+                as: <output array field>
+              }
+          }
+
+      */
       // Implement the required pipeline.
       const pipeline = [
         {
+          // Find the _id from our movies collection
           $match: {
             _id: ObjectId(id),
+          },
+        },
+        {
+          $lookup: {
+            from: "comments", // We want to find all comments that have the same ID as our movie
+            let: { id: "$_id" }, // Create a local variable "id" which is set to our original "_id" variable in our $match stage
+            pipeline: [
+              {
+                // Find all documents in the comments collection where the movie_id matches our local variable "id"
+                $match: {
+                  $expr: {
+                    $eq: ["$movie_id", "$$id"],
+                  },
+                },
+              },
+              {
+                // Sort the comments so that the most recent ones are first (descending order)
+                $sort: {
+                  date: -1,
+                },
+              },
+            ],
+            as: "comments",
           },
         },
       ]
