@@ -18,3 +18,17 @@ Modify `mflix-js/src/dao/moviesDAO.js` so that `getMovieByID()` returns null whe
 ```
 $ npm test -t error-handling
 ```
+
+## Ticket: Principle of Least Privilege
+For this ticket, you'll be required to add a new user on your Atlas cluster for the MFlix application to connect with.
+
+The user should follow credentials:
+
+  username: mflixAppUser
+  password: mflixAppPwd
+
+This user should have the `readWrite` role on the mflix database. Use `Add Default Privileges` to assign the user this specific role.
+
+After you have created this user, modify the SRV connection string in your configuration file so the application connects with the new username and password.
+
+There are no unit tests for this ticket.
