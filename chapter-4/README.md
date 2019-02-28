@@ -12,3 +12,9 @@ Modify `mflix-js/src/index.js` and `mflix-js/test/config/mongoEnvironment.js` to
 ```
 $ npm test -t timeouts
 ```
+
+## Ticket: Handling Errors
+Modify `mflix-js/src/dao/moviesDAO.js` so that `getMovieByID()` returns null when an `InvalidId` error is thrown  and `mflix-js/test/error-handling.test.js` passes. Verify by running:
+```
+$ npm test -t error-handling
+```
