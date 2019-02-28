@@ -357,6 +357,9 @@ export default class MoviesDAO {
 
       // TODO Ticket: Error Handling
       // Catch the InvalidId error by string matching, and then handle it.
+      if ((e.MongoError = "E11000 duplicate key error collection")) {
+        return null
+      }
       console.error(`Something went wrong in getMovieByID: ${e}`)
       throw e
     }
