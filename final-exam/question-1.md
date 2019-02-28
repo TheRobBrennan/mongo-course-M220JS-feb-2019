@@ -17,6 +17,20 @@ Assume a collection called elections that holds data about all United States Pre
 
 Which of the following queries will retrieve all the Republican winners with at least 160 electoral votes?
 
+elections.find( { total_electoral_votes: { "$gte": 160 },
+                     winner_party: "Republican" } )
+
+elections.find( { winner_party: "Republican",
+                     winner_electoral_votes: { "$gte": 160 } } )
+
+elections.find( { winner_electoral_votes: { "$gte": 160 } } )
+
+elections.find( { winner_party: "Republican",
+                     winner_electoral_votes: { "$lt": 160 } } )
+
+elections.find( { winner_party: "Republican",
+                     total_electoral_votes: { "$lte": 160 } } )
+
 ### My answer
 ```
 elections.find( { winner_party: "Republican",
